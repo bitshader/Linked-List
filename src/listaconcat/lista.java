@@ -1,6 +1,9 @@
+
 package listaconcat;
 
 import java.io.*;
+
+
 
 public class lista{
     private Nodo testa=null;
@@ -49,10 +52,10 @@ public class lista{
         }
     }
 
-    public void elimina(){
+    public void elimina(int scelt){
         Nodo temp,succ;
         String eliminaelemento= "";
-        String stringainserita= "";
+   
         boolean flag = false;
         System.out.println("Vuoi eliminare un elemento della rubrica ?Y/n");
         try {
@@ -89,7 +92,31 @@ public class lista{
                 System.out.println("errore");
             }
 
-            Persona.persona = Persona.Nome + "\t" + Persona.Cognome;
+            System.out.println("Inserire numero Telefono persona dalla lista");
+            try{
+                
+                Persona.numeroTelefono = tastiera.readLine();
+
+            }catch (final Exception e){
+                System.out.println("errore");
+            }
+
+            System.out.println("Inserire colore preferito persona dalla lista");
+            try{
+                
+                Persona.colorePreferito = tastiera.readLine();
+
+            }catch (final Exception e){
+                System.out.println("errore");
+            }
+
+            switch(scelt){
+                case 1: Persona.persona = Persona.Nome + "\t" +  Persona.Cognome+ "\t" +  Persona.numeroTelefono + "\t" +  Persona.colorePreferito;  
+                case 2: Persona.persona = Persona.Cognome + "\t" +  Persona.Nome+ "\t" +  Persona.numeroTelefono + "\t" +  Persona.colorePreferito;  
+                case 3: Persona.persona = Persona.Nome + "\t" +  Persona.Cognome+ "\t" +  Persona.colorePreferito + "\t" +  Persona.numeroTelefono;  
+                case 4: Persona.persona = Persona.Cognome + "\t" +  Persona.Nome+ "\t" +  Persona.colorePreferito + "\t" +  Persona.numeroTelefono;  
+                default:Persona.persona = Persona.Nome + "\t" +  Persona.Cognome+ "\t" +  Persona.numeroTelefono + "\t" +  Persona.colorePreferito;  
+            }
 
             if ((Persona.persona).compareTo(testa.getDato()) == 0) {
                 testa = testa.getSuccessivo();
@@ -157,12 +184,18 @@ public class lista{
         return false;
     }
 
-    public void stampa(){
+    public void stampa(int scelt){
         Nodo temp;
         temp=testa;
         System.out.println("Contenuto lista");
-
-        System.out.println("NOMI"+"\t"+"COGNOMI");
+        switch(scelt){
+            case 1: System.out.println("NOMI"+"\t"+"COGNOMI"+"\t"+"NUMERO"+"\t"+"COLORE PREFERITO");
+            case 2: System.out.println("COGNOME"+"\t"+"NOME"+"\t"+"NUMERO"+"\t"+"COLORE PREFERITO");  
+            case 3: System.out.println("NOMI"+"\t"+"COGNOMI"+"\t"+"COLORE PREFERITO"+"\t"+"NUMERO");  
+            case 4: System.out.println("COGNOME"+"\t"+"NOME"+"\t"+"COLORE PREFERITO"+"\t"+"NUMERO");  
+            default: System.out.println("NOMI"+"\t"+"COGNOMI"+"\t"+"NUMERO"+"\t"+"COLORE PREFERITO");  
+        }
+        
         while(temp!= null){
 
                 System.out.println(temp.getDato());
